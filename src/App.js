@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { getCountries, getReportByCountry } from "./components/api";
+import Case from "./components/Case";
+import Charts from "./components/Charts";
+import Country from "./components/Country";
 
 function App() {
+  const [countries, setCountry] = useState([]);
+  const [selectedCountryID, setSelectedCountryID] = useState('');
+  const [report,setReport] = useState([]);
+  useEffect(()=>{
+    getCountries()
+      .then((res)=>{
+        setCountry(res.data)
+        console.log(res.data)
+        setSelectedCountryID('vn')
+      })
+  }, [])
+  const handleOnChange=(e)=>{
+    setSelectedCountryID(e.target.value);
+  };
+  useEffect(() => {
+    if(selectedCountryID){
+      const { Slug } = countries.find(
+        (value) => value.ISO2.toLowerCase() === selectedCountryID
+        );
+      getReportByCountry(Slug)
+        .then((res)=>{
+          res.data.pop();
+          setReport(res.data)
+        })
+    }
+  }, [countries,selectedCountryID])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     <Country countries={countries} handleOnChange={handleOnChange} value={selectedCountryID}/>
+     <Case report={report}/>
+     <Charts report={report}/>
+    </>
   );
 }
 

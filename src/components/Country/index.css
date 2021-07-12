@@ -1,0 +1,17 @@
+.country-selected{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.country-selected label{
+    font-size: 32px;
+    color: rgba(15, 15, 15, 0.904);
+}
+.country-selected select{
+    width: 120px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    text-indent: 20%;
+}

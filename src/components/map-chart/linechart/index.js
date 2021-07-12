@@ -17,6 +17,9 @@ const generateOption=(data)=>{
           title: {
             text: 'Tổng ca nhiễm',
           },
+          subtitle: {
+            text: 'Dữ liệu đã được xác nhận'
+          },
           xAxis: {
             categories: categories,
             crosshair: true,
@@ -25,7 +28,7 @@ const generateOption=(data)=>{
           yAxis: {
             min: 0,
             title: {
-              text: null,
+              text: 'Số lượng ca nhiễm',
             },
           },
           tooltip: {
@@ -36,6 +39,7 @@ const generateOption=(data)=>{
             footerFormat: '</table>',
             shared: true,
             useHTML: true,
+            borderRadius: 10,
           },
           plotOptions: {
             column: {
@@ -45,15 +49,13 @@ const generateOption=(data)=>{
           },
           series: [
             {
-              name: 'Tổng Ca nhiễm',
+              name: 'Tổng ca nhiễm',
               data: data.map((item) => item.Confirmed),
             },
           ],
-          
         };
 }
 export default function LineChart({data}) {
-    // console.log("line chart"+data)
     const [options,setOptions]=useState({});
     const [reportStyle, setReportStyle]=useState('all')
     useEffect(()=>{

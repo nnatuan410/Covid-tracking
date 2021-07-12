@@ -1,8 +1,9 @@
 import { CardContent, Grid, Typography } from '@material-ui/core'
 import React from 'react'
 import CardBox from './Card'
-export default function Case({report}) {
 
+
+export default function Case({report}) {
     const data = report && report.length ?  report[report.length-1]:[];
     const sumary = [
         {

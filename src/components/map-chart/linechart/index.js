@@ -8,7 +8,6 @@ import { Button, ButtonGroup } from '@material-ui/core';
 
 
 const generateOption=(data)=>{
-    // console.log("data-linechart"+data)
     const categories= data.map(item=> moment(item.Date).format('DD/MM/YY') );
     return {
           chart: {

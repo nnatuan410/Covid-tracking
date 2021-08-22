@@ -39,7 +39,6 @@ const initOptions={
       ],
 }
 export default function HighMap({mapData}) {
-    console.log({mapData})
     const [option,setOptions]=useState({})
     const [mapload,setMapload] = useState(false);
     const chartRef= useRef(null);
